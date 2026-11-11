@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Tech Bites | Full Stack Java</title>
+<title>The Tech Bites Hub | Full Stack Java</title>
 <meta name="description" content="The Tech Bites: daily Full Stack Java interview questions in Hindi. Java, Spring Boot, Angular, System Design, Microservices.">
-<meta property="og:title" content="The Tech Bites | Full Stack Java">
+<meta property="og:title" content="The Tech Bites Hub | Full Stack Java">
 <meta property="og:description" content="Daily Full Stack Java interview questions in Hindi. YouTube, Instagram, Facebook, Telegram in one place.">
 <meta property="og:image" content="https://thetechbites.github.io/logo.png">
 <meta name="theme-color" content="#07080C">
@@ -118,6 +118,64 @@ h1 span{background:linear-gradient(100deg,var(--cyan),var(--violet) 60%,var(--go
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
 .chip{font-size:11.5px;font-weight:600;padding:6px 10px;border-radius:9px;background:rgba(139,92,246,.12);border:1px solid rgba(139,92,246,.3);color:#C9B8FF}
 
+
+/* ---------- sections ---------- */
+.sec{margin-top:26px;opacity:0;animation:up .7s cubic-bezier(.2,.8,.2,1) forwards}
+.sec-h{display:flex;align-items:center;justify-content:space-between;margin:0 4px 12px}
+.sec-h h2{font:600 13px "Space Grotesk";letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
+.sec-h small{font:500 11.5px "JetBrains Mono",monospace;color:var(--muted)}
+.bento + .sec, .sec + .bento{margin-top:26px}
+
+/* daily question */
+.qcard{position:relative;border-radius:22px;padding:20px;border:1px solid rgba(102,252,241,.25);overflow:hidden;
+  background:linear-gradient(150deg,rgba(102,252,241,.10),rgba(139,92,246,.08) 50%,var(--tile))}
+.qcard::before{content:"?";position:absolute;right:-6px;top:-34px;font:700 170px "Space Grotesk";color:rgba(102,252,241,.06);pointer-events:none}
+.qmeta{display:flex;gap:8px;align-items:center;margin-bottom:12px}
+.qbadge{font:700 10px Inter;letter-spacing:1px;padding:4px 8px;border-radius:7px;background:var(--cyan);color:#07080C}
+.qtopic{font:500 11px "JetBrains Mono",monospace;color:var(--cyan)}
+.qtext{font:600 17px/1.4 "Space Grotesk";letter-spacing:-.2px}
+.qbtn{margin-top:16px;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;
+  font:600 13px Inter;color:var(--text);background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:12px;padding:12px;transition:.25s}
+.qbtn:hover{background:rgba(102,252,241,.12);border-color:rgba(102,252,241,.4)}
+.qbtn svg{transition:transform .3s}
+.qcard.open .qbtn svg{transform:rotate(180deg)}
+.qans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.2,.8,.2,1)}
+.qcard.open .qans{grid-template-rows:1fr}
+.qans > div{overflow:hidden}
+.qans p{margin-top:14px;padding:14px;border-radius:12px;background:rgba(0,0,0,.3);border-left:3px solid var(--gold);font-size:13.5px;line-height:1.6;color:#D5D9E3}
+.qans b{color:var(--gold);font-weight:600}
+.qfoot{display:flex;justify-content:space-between;margin-top:12px;font-size:11.5px;color:var(--muted)}
+.qfoot a{color:var(--cyan);text-decoration:none;font-weight:600}
+
+/* top shorts */
+.shorts{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -16px;padding:4px 16px 10px;scrollbar-width:none}
+.shorts::-webkit-scrollbar{display:none}
+.short{flex:0 0 150px;scroll-snap-align:start;aspect-ratio:9/15;border-radius:18px;position:relative;overflow:hidden;text-decoration:none;color:var(--text);
+  border:1px solid var(--line);display:flex;flex-direction:column;justify-content:flex-end;padding:14px;transition:transform .3s,border-color .3s;
+  background:radial-gradient(120% 80% at 50% 0%,var(--c1),transparent 70%),linear-gradient(180deg,#141722,#0A0B10)}
+.short:hover{transform:translateY(-4px);border-color:var(--c2)}
+.short img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55}
+.short::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(7,8,12,.95) 25%,transparent 70%)}
+.short > *{position:relative;z-index:1}
+.short .code{position:absolute;top:16px;left:14px;right:14px;z-index:1;font:500 10.5px/1.5 "JetBrains Mono",monospace;color:var(--c2);opacity:.75;white-space:pre}
+.short .hot{position:absolute;top:auto;bottom:auto;align-self:flex-start;margin-bottom:auto;font:700 9.5px Inter;letter-spacing:.8px;padding:4px 7px;border-radius:6px;background:rgba(245,197,66,.15);color:var(--gold);border:1px solid rgba(245,197,66,.35)}
+.short h4{font:600 14px/1.25 "Space Grotesk"}
+.short span.t{font-size:11px;color:var(--muted);margin-top:4px}
+.short .pl{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.12);margin-bottom:10px;backdrop-filter:blur(6px)}
+.short .pl svg{width:13px;height:13px;margin-left:2px}
+
+/* roadmap */
+.road{position:relative;padding-left:30px}
+.road::before{content:"";position:absolute;left:11px;top:8px;bottom:8px;width:2px;border-radius:2px;background:linear-gradient(var(--cyan),var(--violet),var(--gold))}
+.step{position:relative;display:block;text-decoration:none;color:var(--text);margin-bottom:10px;padding:14px 16px;border-radius:16px;border:1px solid var(--line);
+  background:linear-gradient(160deg,var(--tile2),var(--tile));transition:transform .3s,border-color .3s}
+.step:hover{transform:translateX(4px);border-color:var(--sc)}
+.step::before{content:attr(data-n);position:absolute;left:-30px;top:50%;transform:translateY(-50%);width:24px;height:24px;border-radius:50%;
+  display:grid;place-items:center;font:700 11px Inter;color:#07080C;background:var(--sc);box-shadow:0 0 0 4px var(--bg),0 0 16px var(--sc)}
+.step h4{font:600 14.5px "Space Grotesk"}
+.step p{font-size:12px;color:var(--muted);margin-top:3px}
+.step .lvl{position:absolute;right:14px;top:14px;font:500 10px "JetBrains Mono",monospace;color:var(--sc)}
+
 footer{text-align:center;color:var(--muted);font-size:12px;margin-top:28px;line-height:1.7}
 footer b{color:var(--cyan);font-weight:600}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.tile{opacity:1}}
@@ -140,7 +198,33 @@ footer b{color:var(--cyan);font-weight:600}
 
   <div class="ticker"><div class="track" id="track"></div></div>
 
-  <section class="bento" id="bento"></section>
+  <section class="bento" id="bento1"></section>
+
+  <section class="sec" style="animation-delay:.45s">
+    <div class="sec-h"><h2>Today's Interview Question</h2><small id="qnext"></small></div>
+    <div class="qcard" id="qcard">
+      <div class="qmeta"><span class="qbadge" id="qno"></span><span class="qtopic" id="qtopic"></span></div>
+      <div class="qtext" id="qtext"></div>
+      <div class="qans"><div><p id="qans"></p></div></div>
+      <button class="qbtn" id="qbtn"><span id="qbtnt">Think first, then reveal answer</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="qfoot"><span>New question every day</span><a id="qmore" href="#" target="_blank" rel="noopener">More on YouTube →</a></div>
+    </div>
+  </section>
+
+  <section class="sec" style="animation-delay:.55s">
+    <div class="sec-h"><h2>🔥 Top Shorts</h2><small>swipe →</small></div>
+    <div class="shorts" id="shorts"></div>
+  </section>
+
+  <section class="sec" style="animation-delay:.6s">
+    <div class="sec-h"><h2>Follow Us</h2></div>
+    <div class="bento" id="bento2"></div>
+  </section>
+
+  <section class="sec" style="animation-delay:.65s">
+    <div class="sec-h"><h2>Learning Roadmap</h2><small>zero → full stack</small></div>
+    <div class="road" id="road"></div>
+  </section>
 
   <footer>Built with <b>HTML</b> + <b>Java</b> energy<br>&copy; <span id="yr"></span> The Tech Bites</footer>
 </main>
@@ -155,6 +239,39 @@ const CONFIG = {
   igVisual:  "https://www.instagram.com/visualcode.dev/",
   facebook:  "https://www.facebook.com/TheTechBites",
   telegram:  "https://t.me/codingsolutionforallexam",
+  shortsPage:"https://www.youtube.com/@TheTechBites-vk/shorts",
+  /* Top Shorts: add the Short's video id (from youtube.com/shorts/<id>) to show its thumbnail */
+  topShorts: [
+    { title:"HashMap Collision", sub:"What happens internally?", id:"OjGl54-vNlY", code:"put(k1)\nput(k2)\n→ same bucket", c1:"rgba(102,252,241,.35)", c2:"#66FCF1" },
+    { title:"CORS Error Fix", sub:"Postman 200, browser fails", id:"bGpY_sDQ7DM", code:"OPTIONS /api\n403 ✗\n→ preflight", c1:"rgba(139,92,246,.4)", c2:"#A78BFA" },
+    { title:"Singleton Bean", sub:"Is it thread-safe?", id:"45O1CVOLQXk", code:"@Service\nint count;\n→ race!", c1:"rgba(245,197,66,.3)", c2:"#F5C542" },
+    { title:"@Transactional", sub:"Why no rollback?", id:"my5xTd-0Zjo", code:"this.save()\n→ proxy bypass", c1:"rgba(255,77,77,.3)", c2:"#FF6B6B" }
+  ],
+  roadmap: [
+    { t:"Core Java", d:"OOP, Collections, HashMap internals, Java 21-25 features", lvl:"BEGINNER", c:"#66FCF1" },
+    { t:"Spring Boot", d:"Beans, auto-configuration, REST APIs, Servlet internals", lvl:"CORE", c:"#4FD1C5" },
+    { t:"JPA & Spring Security", d:"N+1, transactions, JWT, filter chain, CORS", lvl:"CORE", c:"#8B5CF6" },
+    { t:"SQL, MySQL & Kafka", d:"Indexes, DB design, consumer groups, events", lvl:"INTERMEDIATE", c:"#A78BFA" },
+    { t:"Microservices", d:"Service discovery, API gateway, outbox, resilience", lvl:"ADVANCED", c:"#F5C542" },
+    { t:"System Design", d:"Scaling, load balancer, caching, HLD + LLD", lvl:"ADVANCED", c:"#F59E0B" },
+    { t:"Angular (Full Stack)", d:"Signals, interceptors, OnPush, Angular + Spring Boot", lvl:"FULL STACK", c:"#FF6B6B" }
+  ],
+  questions: [
+    { topic:"Java · Collections", q:"What happens inside a HashMap when two keys land in the same bucket?", a:"Both entries are stored in the <b>same bucket as a linked list</b>; <code>equals()</code> picks the right key. From Java 8, when a bucket has <b>more than 8 nodes</b> (and capacity ≥ 64) it becomes a <b>Red-Black tree</b>, so lookup drops from O(n) to <b>O(log n)</b>." },
+    { topic:"Spring · Beans", q:"Is a Spring singleton bean thread-safe?", a:"<b>No, not automatically.</b> Singleton only means one instance per container; all threads share it. Keep beans <b>stateless</b>. If you need state, use local variables, <b>ThreadLocal</b>, or a request/prototype scope." },
+    { topic:"Spring · Security", q:"API works in Postman but the browser shows a CORS error. Why?", a:"The <b>browser</b> enforces the same-origin policy and sends a <b>preflight OPTIONS</b> request; Postman doesn't. Fix it on the server: configure a <b>CorsConfigurationSource</b> and enable <code>http.cors()</code> so Spring Security allows the preflight." },
+    { topic:"Spring · Transactions", q:"Why didn't @Transactional roll back?", a:"Two common reasons: <b>self-invocation</b> (calling the method via <code>this</code> bypasses the proxy) and <b>checked exceptions</b> (rollback happens only on RuntimeException by default). Fix: call through another bean and use <code>rollbackFor = Exception.class</code>." },
+    { topic:"JPA · Performance", q:"What is the N+1 query problem and how do you fix it?", a:"Loading N parents fires <b>1 query</b>, then lazy loading fires <b>N more</b> for their children. Fix with <b>JOIN FETCH</b>, <b>@EntityGraph</b>, or <b>batch fetching</b> (<code>hibernate.default_batch_fetch_size</code>)." },
+    { topic:"Java · Basics", q:"Why is String immutable in Java?", a:"For the <b>String pool</b> (one literal shared safely), <b>security</b> (paths, URLs, class names can't change after checks), <b>thread safety</b>, and <b>cached hashCode</b>, which makes Strings fast HashMap keys." },
+    { topic:"Java · Collections", q:"What breaks if you override equals() but not hashCode()?", a:"Equal objects can get <b>different hash codes</b>, so they land in different buckets. <b>HashMap/HashSet</b> then can't find them and may store duplicates. Rule: <b>equal objects must have equal hashCodes</b>." },
+    { topic:"Java · Concurrency", q:"Fail-fast vs fail-safe iterator?", a:"<b>Fail-fast</b> (ArrayList, HashMap) throws <b>ConcurrentModificationException</b> if the collection changes during iteration. <b>Fail-safe</b> (CopyOnWriteArrayList, ConcurrentHashMap) works on a copy or weakly consistent view, so no exception." },
+    { topic:"Kafka", q:"What if a consumer group has more consumers than partitions?", a:"Each partition is read by <b>only one consumer</b> in a group, so the <b>extra consumers sit idle</b>. Max parallelism = <b>number of partitions</b>." },
+    { topic:"System Design · Caching", q:"What is a cache stampede and how do you prevent it?", a:"A hot key expires and <b>thousands of requests hit the DB at once</b>. Prevent it with a <b>lock / single-flight</b> (one request rebuilds the cache), <b>random TTL jitter</b>, or <b>early background refresh</b>." },
+    { topic:"JPA · Locking", q:"Optimistic vs pessimistic locking?", a:"<b>Optimistic</b>: no DB lock; a <code>@Version</code> column is checked on update and a conflict throws <b>OptimisticLockException</b>. Best for low contention. <b>Pessimistic</b>: locks the row (<code>SELECT ... FOR UPDATE</code>). Best for high contention like seat booking." },
+    { topic:"Angular", q:"When should you use OnPush change detection?", a:"With <b>OnPush</b>, Angular checks a component only when an <b>@Input reference changes</b>, an event fires inside it, or an async pipe/signal updates. Use it with <b>immutable data</b> to cut unnecessary checks in large apps." },
+    { topic:"Java 21", q:"When should you use virtual threads?", a:"For <b>I/O-heavy</b> work (DB calls, HTTP calls) where threads mostly wait: you can run <b>millions</b> cheaply. They don't speed up <b>CPU-bound</b> work, and you shouldn't pool them." },
+    { topic:"Spring · Core", q:"@Component vs @Bean?", a:"<b>@Component</b> goes on your own class and is picked up by <b>component scanning</b>. <b>@Bean</b> goes on a method in a @Configuration class; use it for <b>third-party classes</b> or when you need custom creation logic." }
+  ],
   typing:    ["Java","Spring Boot","Angular","System Design","Microservices","Kafka","Interview Questions"],
   ticker:    ["HashMap Collision","CORS Error Fix","Singleton Thread-Safety","JPA N+1","Cache Stampede","Kafka Consumer Groups","Angular Signals","Outbox Pattern","Spring Security","Load Balancer"]
 };
@@ -197,9 +314,9 @@ const tiles = [
      <h3>All Playlists</h3><p>Binge a full topic, start to end</p>
      <div class="chips"><span class="chip">System Design</span><span class="chip">Microservices</span><span class="chip">Interview Shorts</span><span class="chip">Java 25</span></div></a>`
 ];
-const bento = document.getElementById('bento');
-bento.innerHTML = tiles.join('');
-[...bento.children].forEach((t,i)=>{
+const b1=document.getElementById('bento1'), b2=document.getElementById('bento2');
+b1.innerHTML = tiles.slice(0,2).join(''); b2.innerHTML = tiles.slice(2).join('');
+[...b1.children,...b2.children].forEach((t,i)=>{
   t.target='_blank'; t.rel='noopener'; t.style.animationDelay=(.25+i*.07)+'s';
   t.addEventListener('pointermove',e=>{
     const r=t.getBoundingClientRect(), x=e.clientX-r.left, y=e.clientY-r.top;
@@ -208,6 +325,38 @@ bento.innerHTML = tiles.join('');
   });
   t.addEventListener('pointerleave',()=>{t.style.transform=''});
 });
+
+
+/* daily question */
+(function(){
+  const Q=C.questions, now=new Date();
+  const day=Math.floor((Date.UTC(now.getFullYear(),now.getMonth(),now.getDate()))/864e5);
+  const i=day%Q.length, q=Q[i];
+  qno.textContent=now.toLocaleDateString('en-IN',{day:'numeric',month:'short'}).toUpperCase(); qtopic.textContent=q.topic; qtext.textContent=q.q; qans.innerHTML=q.a;
+  qmore.href=C.shortsPage;
+  const card=document.getElementById('qcard');
+  qbtn.onclick=()=>{card.classList.toggle('open');qbtnt.textContent=card.classList.contains('open')?'Hide answer':'Think first, then reveal answer'};
+  const mid=new Date(now);mid.setHours(24,0,0,0);const h=Math.ceil((mid-now)/36e5);
+  qnext.textContent='next in '+h+'h';
+})();
+
+/* top shorts */
+shorts.innerHTML=C.topShorts.map(s=>{
+  const url=s.id?`https://www.youtube.com/shorts/${s.id}`:C.shortsPage;
+  const img=s.id?`<img src="https://i.ytimg.com/vi/${s.id}/hqdefault.jpg" alt="">`:`<span class="code">${s.code}</span>`;
+  return `<a class="short" href="${url}" target="_blank" rel="noopener" style="--c1:${s.c1};--c2:${s.c2}">${img}
+    <span class="pl">${I.play}</span><h4 data-id="${s.id}">${s.title}</h4><span class="t">${s.sub}</span></a>`;
+}).join('');
+/* real title from YouTube (falls back to CONFIG title) */
+shorts.querySelectorAll('h4[data-id]').forEach(h=>{
+  if(!h.dataset.id) return;
+  fetch('https://noembed.com/embed?url=https://www.youtube.com/watch?v='+h.dataset.id)
+    .then(r=>r.json()).then(d=>{ if(d.title){ h.textContent=d.title.split(/[|:#]/)[0].trim(); h.nextElementSibling.textContent=''; } }).catch(()=>{});
+});
+
+/* roadmap */
+road.innerHTML=C.roadmap.map((r,n)=>`<a class="step" data-n="${n+1}" style="--sc:${r.c}" href="${C.playlists}" target="_blank" rel="noopener">
+  <span class="lvl">${r.lvl}</span><h4>${r.t}</h4><p>${r.d}</p></a>`).join('');
 
 /* ticker */
 const tr=document.getElementById('track');
