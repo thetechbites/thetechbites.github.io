@@ -8,6 +8,8 @@
 <meta property="og:title" content="The Tech Bites | Full Stack Java">
 <meta property="og:description" content="Daily Full Stack Java interview questions in Hindi. YouTube, Instagram, Facebook, all in one place.">
 <meta name="theme-color" content="#0B0C10">
+<link rel="icon" type="image/png" href="logo.png">
+<meta property="og:image" content="https://thetechbites.github.io/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
@@ -44,7 +46,7 @@
   main{position:relative; z-index:1; width:100%; max-width:440px}
   .profile{text-align:center; margin-bottom:26px; animation:rise .7s ease both}
   .avatar{
-    width:104px;height:104px;border-radius:50%;margin:0 auto 16px;
+    width:120px;height:120px;border-radius:50%;margin:0 auto 16px;
     display:grid;place-items:center;position:relative;
     background:radial-gradient(circle at 30% 30%, #1d1f2e, #0e0f16);
     font-family:"Space Grotesk";font-weight:700;font-size:34px;
@@ -56,6 +58,7 @@
     z-index:-1; animation:spin 6s linear infinite;
   }
   .avatar::after{content:"";position:absolute;inset:0;border-radius:50%;background:inherit;z-index:-1}
+  .avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
   @keyframes spin{to{transform:rotate(360deg)}}
   h1{font-family:"Space Grotesk";font-size:28px;font-weight:700;letter-spacing:-.5px}
   h1 span{background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -100,7 +103,7 @@
 
 <main>
   <section class="profile">
-    <div class="avatar">TTB</div>
+    <div class="avatar"><img src="logo.png" alt="The Tech Bites logo"></div>
     <h1>The <span>Tech Bites</span></h1>
     <p class="tag">Daily Full Stack Java interview questions in Hindi.<br>Learn it once, answer it with confidence.</p>
     <div class="chips">
