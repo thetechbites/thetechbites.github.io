@@ -4,165 +4,228 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Tech Bites | Full Stack Java</title>
-<meta name="description" content="The Tech Bites: daily Full Stack Java interview questions, Spring Boot, Angular, System Design and Microservices in Hindi.">
+<meta name="description" content="The Tech Bites: daily Full Stack Java interview questions in Hindi. Java, Spring Boot, Angular, System Design, Microservices.">
 <meta property="og:title" content="The Tech Bites | Full Stack Java">
-<meta property="og:description" content="Daily Full Stack Java interview questions in Hindi. YouTube, Instagram, Facebook, all in one place.">
-<meta name="theme-color" content="#0B0C10">
-<link rel="icon" type="image/png" href="logo.png">
+<meta property="og:description" content="Daily Full Stack Java interview questions in Hindi. YouTube, Instagram, Facebook, Telegram in one place.">
 <meta property="og:image" content="https://thetechbites.github.io/logo.png">
+<meta name="theme-color" content="#07080C">
+<link rel="icon" type="image/png" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#0B0C10; --card:rgba(20,22,32,.72); --line:rgba(255,255,255,.08);
-    --cyan:#66FCF1; --violet:#8B5CF6; --gold:#F5C542; --text:#EDEEF2; --muted:#9AA0B0;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html,body{min-height:100%}
-  body{
-    background:var(--bg); color:var(--text);
-    font-family:Inter,system-ui,sans-serif;
-    display:flex; justify-content:center; padding:48px 18px 40px;
-    overflow-x:hidden; position:relative;
-  }
-  /* animated synthwave grid */
-  .grid{
-    position:fixed; left:-50%; right:-50%; bottom:-10%; height:60vh; z-index:0;
-    background-image:
-      linear-gradient(rgba(139,92,246,.35) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(102,252,241,.25) 1px, transparent 1px);
-    background-size:60px 60px;
-    transform:perspective(500px) rotateX(62deg);
-    mask-image:linear-gradient(to top, #000 10%, transparent 85%);
-    -webkit-mask-image:linear-gradient(to top, #000 10%, transparent 85%);
-    animation:gridmove 4s linear infinite;
-  }
-  @keyframes gridmove{to{background-position:0 60px,0 0}}
-  .glow{position:fixed; border-radius:50%; filter:blur(90px); z-index:0; opacity:.5}
-  .g1{width:340px;height:340px;background:var(--violet);top:-80px;left:-80px;animation:float 9s ease-in-out infinite}
-  .g2{width:280px;height:280px;background:var(--cyan);top:30%;right:-100px;opacity:.25;animation:float 11s ease-in-out infinite reverse}
-  @keyframes float{50%{transform:translate(30px,40px)}}
+:root{
+  --bg:#07080C; --tile:#0F1118; --tile2:#141722; --line:rgba(255,255,255,.07);
+  --cyan:#66FCF1; --violet:#8B5CF6; --gold:#F5C542; --text:#EEF0F5; --muted:#8C93A6;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 
-  main{position:relative; z-index:1; width:100%; max-width:440px}
-  .profile{text-align:center; margin-bottom:26px; animation:rise .7s ease both}
-  .avatar{
-    width:120px;height:120px;border-radius:50%;margin:0 auto 16px;
-    display:grid;place-items:center;position:relative;
-    background:radial-gradient(circle at 30% 30%, #1d1f2e, #0e0f16);
-    font-family:"Space Grotesk";font-weight:700;font-size:34px;
-    color:var(--cyan); letter-spacing:-1px;
-  }
-  .avatar::before{
-    content:"";position:absolute;inset:-4px;border-radius:50%;
-    background:conic-gradient(var(--violet),var(--cyan),var(--gold),var(--violet));
-    z-index:-1; animation:spin 6s linear infinite;
-  }
-  .avatar::after{content:"";position:absolute;inset:0;border-radius:50%;background:inherit;z-index:-1}
-  .avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
-  @keyframes spin{to{transform:rotate(360deg)}}
-  h1{font-family:"Space Grotesk";font-size:28px;font-weight:700;letter-spacing:-.5px}
-  h1 span{background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .tag{color:var(--muted);font-size:14.5px;margin-top:8px;line-height:1.5}
-  .chips{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-top:14px}
-  .chip{font-size:11.5px;font-weight:600;padding:5px 10px;border-radius:999px;border:1px solid var(--line);color:var(--text);background:rgba(255,255,255,.03)}
+/* ---------- background ---------- */
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(110px)}
+.o1{width:520px;height:520px;background:#5B2EE6;opacity:.35;top:-200px;left:-160px;animation:drift 14s ease-in-out infinite}
+.o2{width:420px;height:420px;background:#0FB5AA;opacity:.22;top:35%;right:-180px;animation:drift 17s ease-in-out infinite reverse}
+.o3{width:360px;height:360px;background:#C9971C;opacity:.14;bottom:-140px;left:20%;animation:drift 20s ease-in-out infinite}
+@keyframes drift{50%{transform:translate(40px,50px) scale(1.1)}}
+.gridfloor{position:absolute;left:-50%;right:-50%;bottom:-5%;height:45vh;
+  background-image:linear-gradient(rgba(139,92,246,.28) 1px,transparent 1px),linear-gradient(90deg,rgba(102,252,241,.18) 1px,transparent 1px);
+  background-size:56px 56px;transform:perspective(420px) rotateX(64deg);
+  mask-image:linear-gradient(to top,#000,transparent 80%);-webkit-mask-image:linear-gradient(to top,#000,transparent 80%);
+  animation:floor 3.5s linear infinite}
+@keyframes floor{to{background-position:0 56px,0 0}}
+.noise{position:absolute;inset:0;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
-  .label{font-family:"Space Grotesk";font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin:22px 4px 10px}
-  .links{display:flex;flex-direction:column;gap:12px}
-  a.btn{
-    display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--text);
-    background:var(--card);border:1px solid var(--line);border-radius:16px;
-    padding:14px 16px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-    position:relative;overflow:hidden;transition:transform .2s, border-color .2s, box-shadow .2s;
-    animation:rise .6s ease both;
-  }
-  a.btn:hover{transform:translateY(-3px);border-color:var(--c);box-shadow:0 10px 30px -10px var(--c)}
-  a.btn::after{
-    content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;
-    background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);
-    transform:skewX(-20deg);transition:left .6s;
-  }
-  a.btn:hover::after{left:120%}
-  .ico{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;flex-shrink:0;background:color-mix(in srgb,var(--c) 18%,transparent);color:var(--c)}
-  .ico svg{width:22px;height:22px}
-  .txt b{display:block;font-size:15.5px;font-weight:600}
-  .txt small{color:var(--muted);font-size:12.5px}
-  .arrow{margin-left:auto;color:var(--muted);transition:transform .2s}
-  a.btn:hover .arrow{transform:translateX(4px);color:var(--c)}
-  a.featured{border-color:color-mix(in srgb,var(--gold) 45%,transparent);background:linear-gradient(135deg,rgba(245,197,66,.12),rgba(139,92,246,.10))}
-  .badge{position:absolute;top:10px;right:12px;font-size:10px;font-weight:700;letter-spacing:1px;color:#0B0C10;background:var(--gold);padding:3px 7px;border-radius:6px}
-  @keyframes rise{from{opacity:0;transform:translateY(14px)}}
+main{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:44px 16px 36px}
 
-  footer{text-align:center;color:var(--muted);font-size:12px;margin-top:30px}
-  footer b{color:var(--cyan);font-weight:600}
+/* ---------- hero ---------- */
+.hero{text-align:center;animation:up .8s cubic-bezier(.2,.8,.2,1) both}
+.logo{width:128px;height:128px;margin:0 auto 18px;position:relative;border-radius:50%}
+.logo::before{content:"";position:absolute;inset:-5px;border-radius:50%;background:conic-gradient(from 0deg,var(--violet),var(--cyan),var(--gold),var(--violet));animation:spin 5s linear infinite;filter:blur(.3px)}
+.logo::after{content:"";position:absolute;inset:-22px;border-radius:50%;background:conic-gradient(from 0deg,var(--violet),var(--cyan),var(--gold),var(--violet));filter:blur(28px);opacity:.45;animation:spin 5s linear infinite;z-index:-1}
+.logo img{position:relative;width:100%;height:100%;border-radius:50%;object-fit:cover;border:4px solid var(--bg);display:block}
+.live{position:absolute;bottom:4px;right:2px;z-index:2;display:flex;align-items:center;gap:5px;background:#0B0C10;border:1px solid var(--line);padding:4px 8px;border-radius:999px;font:600 10px/1 Inter;letter-spacing:.5px}
+.live i{width:7px;height:7px;border-radius:50%;background:#2EE59D;box-shadow:0 0 0 0 #2EE59D;animation:ping 1.6s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 7px transparent}}
+@keyframes spin{to{transform:rotate(360deg)}}
+h1{font:700 32px/1.1 "Space Grotesk";letter-spacing:-1px}
+h1 span{background:linear-gradient(100deg,var(--cyan),var(--violet) 60%,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.type{font:500 14px "JetBrains Mono",monospace;color:var(--cyan);margin-top:10px;height:20px}
+.type::before{content:"> ";color:var(--muted)}
+.type b{font-weight:500;border-right:2px solid var(--cyan);padding-right:2px;animation:caret .8s steps(1) infinite}
+@keyframes caret{50%{border-color:transparent}}
+.tag{color:var(--muted);font-size:14px;margin-top:8px}
+.stats{display:flex;justify-content:center;gap:8px;margin-top:18px;flex-wrap:wrap}
+.stat{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.035);border:1px solid var(--line);padding:7px 12px;border-radius:12px;font-size:12px;font-weight:600}
+.stat em{font-style:normal;color:var(--gold)}
+
+/* ---------- ticker ---------- */
+.ticker{margin:26px -16px 22px;overflow:hidden;border-block:1px solid var(--line);background:rgba(255,255,255,.02);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.track{display:flex;gap:28px;width:max-content;padding:11px 0;animation:scroll 32s linear infinite;font:500 12.5px "JetBrains Mono",monospace;color:var(--muted)}
+.track span::before{content:"◆ ";color:var(--violet)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* ---------- bento ---------- */
+.bento{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tile{position:relative;display:block;text-decoration:none;color:var(--text);background:linear-gradient(160deg,var(--tile2),var(--tile));
+  border:1px solid var(--line);border-radius:22px;padding:18px;overflow:hidden;isolation:isolate;
+  transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .3s;transform-style:preserve-3d;
+  opacity:0;animation:up .7s cubic-bezier(.2,.8,.2,1) forwards}
+.tile.wide{grid-column:span 2}
+.tile::before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .3s;
+  background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),color-mix(in srgb,var(--c) 22%,transparent),transparent 70%)}
+.tile:hover::before{opacity:1}
+.tile:hover{border-color:color-mix(in srgb,var(--c) 55%,transparent);box-shadow:0 18px 40px -18px var(--c)}
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+.ico{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;color:#fff;margin-bottom:14px;box-shadow:0 8px 20px -8px var(--c)}
+.ico svg{width:22px;height:22px}
+.tile h3{font:600 16px "Space Grotesk";letter-spacing:-.2px}
+.tile p{color:var(--muted);font-size:12.5px;margin-top:4px;line-height:1.45}
+.go{position:absolute;top:16px;right:16px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);color:var(--muted);transition:.3s}
+.tile:hover .go{background:var(--c);color:#07080C;border-color:var(--c);transform:rotate(-45deg)}
+
+/* youtube hero tile */
+.yt{--c:#FF3B3B;padding:22px;background:linear-gradient(135deg,#2A0D12 0%,#141722 55%,#0F1118 100%)}
+.yt::after{content:"";position:absolute;inset:-1px;border-radius:22px;padding:1px;z-index:-1;
+  background:conic-gradient(from var(--a,0deg),transparent 0 70%,#FF3B3B 80%,var(--gold) 90%,transparent);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:border 4s linear infinite}
+@property --a{syntax:"<angle>";inherits:false;initial-value:0deg}
+@keyframes border{to{--a:360deg}}
+.yt-row{display:flex;align-items:center;gap:14px}
+.yt .ico{margin:0;width:54px;height:54px;border-radius:16px;background:linear-gradient(135deg,#FF4D4D,#C4161C)}
+.yt .ico svg{width:28px;height:28px}
+.yt h3{font-size:19px}
+.sub{display:flex;align-items:center;justify-content:space-between;margin-top:18px;gap:10px}
+.sub small{color:var(--muted);font-size:12px}
+.sub small b{color:var(--text)}
+.btn-sub{background:#FF3B3B;color:#fff;font:700 12.5px Inter;letter-spacing:.6px;padding:10px 16px;border-radius:12px;white-space:nowrap;box-shadow:0 8px 22px -8px #FF3B3B;transition:transform .2s}
+.yt:hover .btn-sub{transform:scale(1.05)}
+
+/* latest video tile */
+.vid{--c:var(--cyan);padding:0}
+.thumb{position:relative;aspect-ratio:16/8;overflow:hidden;background:#000}
+.thumb img{width:100%;height:100%;object-fit:cover;opacity:.75;transition:transform .6s,opacity .3s}
+.vid:hover .thumb img{transform:scale(1.06);opacity:.9}
+.thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,var(--tile) 2%,transparent 60%)}
+.play{position:absolute;inset:0;margin:auto;width:58px;height:58px;border-radius:50%;z-index:1;display:grid;place-items:center;background:rgba(255,255,255,.12);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.25)}
+.play svg{width:22px;height:22px;margin-left:3px}
+.play::after{content:"";position:absolute;inset:-8px;border-radius:50%;border:1px solid rgba(102,252,241,.5);animation:ring 2s infinite}
+@keyframes ring{to{inset:-22px;opacity:0}}
+.pill{position:absolute;top:12px;left:12px;z-index:2;font:700 10px Inter;letter-spacing:1px;background:var(--gold);color:#07080C;padding:4px 8px;border-radius:7px}
+.vid .body{padding:4px 18px 18px}
+
+/* playlist chips */
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.chip{font-size:11.5px;font-weight:600;padding:6px 10px;border-radius:9px;background:rgba(139,92,246,.12);border:1px solid rgba(139,92,246,.3);color:#C9B8FF}
+
+footer{text-align:center;color:var(--muted);font-size:12px;margin-top:28px;line-height:1.7}
+footer b{color:var(--cyan);font-weight:600}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.tile{opacity:1}}
 </style>
 </head>
 <body>
-<div class="grid"></div>
-<div class="glow g1"></div>
-<div class="glow g2"></div>
+<div class="bg"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div><div class="gridfloor"></div><div class="noise"></div></div>
 
 <main>
-  <section class="profile">
-    <div class="avatar"><img src="logo.png" alt="The Tech Bites logo"></div>
+  <section class="hero">
+    <div class="logo"><img src="logo.png" alt="The Tech Bites logo"><span class="live"><i></i>DAILY</span></div>
     <h1>The <span>Tech Bites</span></h1>
-    <p class="tag">Daily Full Stack Java interview questions in Hindi.<br>Learn it once, answer it with confidence.</p>
-    <div class="chips">
-      <span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">Angular</span>
-      <span class="chip">System Design</span><span class="chip">Microservices</span><span class="chip">Kafka</span>
+    <div class="type"><b id="typed"></b></div>
+    <p class="tag">Full Stack Java interview questions, explained in Hindi.</p>
+    <div class="stats">
+      <span class="stat">⏰ New Short <em>9 AM</em> daily</span>
+      <span class="stat">🎬 Long videos <em>weekends</em></span>
     </div>
   </section>
 
-  <div class="label">Watch</div>
-  <div class="links" id="watch"></div>
+  <div class="ticker"><div class="track" id="track"></div></div>
 
-  <div class="label">Follow</div>
-  <div class="links" id="follow"></div>
+  <section class="bento" id="bento"></section>
 
-  <footer>Made with <b>Java</b> energy &middot; &copy; <span id="yr"></span> The Tech Bites</footer>
+  <footer>Built with <b>HTML</b> + <b>Java</b> energy<br>&copy; <span id="yr"></span> The Tech Bites</footer>
 </main>
 
 <script>
-/* ==== EDIT LINKS HERE ==== (empty url = button hidden) */
-const LINKS = {
-  watch: [
-    { title:"YouTube Channel", sub:"Daily Shorts at 9 AM + weekend long videos", url:"https://www.youtube.com/@TheTechBites-vk?sub_confirmation=1", icon:"yt", color:"#FF4D4D", featured:true, badge:"SUBSCRIBE" },
-    { title:"Latest Long Video", sub:"Microservices: Service Discovery", url:"https://youtu.be/rB1-hQ6_9AQ", icon:"play", color:"#66FCF1" },
-    { title:"All Playlists", sub:"System Design, Microservices, Interview Shorts", url:"https://www.youtube.com/@TheTechBites-vk/playlists", icon:"list", color:"#8B5CF6" }
-  ],
-  follow: [
-    { title:"Instagram", sub:"@the.tech.bites: Java & Spring Boot reels", url:"https://www.instagram.com/the.tech.bites/", icon:"ig", color:"#F5C542" },
-    { title:"Instagram", sub:"@visualcode.dev: algorithm visuals", url:"https://www.instagram.com/visualcode.dev/", icon:"ig", color:"#66FCF1" },
-    { title:"Facebook Page", sub:"The Tech Bites", url:"https://www.facebook.com/TheTechBites", icon:"fb", color:"#4D8BFF" },
-    { title:"Telegram", sub:"New video alerts", url:"https://t.me/codingsolutionforallexam", icon:"tg", color:"#4FC3F7" }
-  ]
+/* ===================== EDIT HERE ===================== */
+const CONFIG = {
+  youtube:   "https://www.youtube.com/@TheTechBites-vk?sub_confirmation=1",
+  latest:    { url:"https://youtu.be/rB1-hQ6_9AQ", id:"rB1-hQ6_9AQ", title:"Microservices: Service Discovery", sub:"Theory + practical, full episode" },
+  playlists: "https://www.youtube.com/@TheTechBites-vk/playlists",
+  igMain:    "https://www.instagram.com/the.tech.bites/",
+  igVisual:  "https://www.instagram.com/visualcode.dev/",
+  facebook:  "https://www.facebook.com/TheTechBites",
+  telegram:  "https://t.me/codingsolutionforallexam",
+  typing:    ["Java","Spring Boot","Angular","System Design","Microservices","Kafka","Interview Questions"],
+  ticker:    ["HashMap Collision","CORS Error Fix","Singleton Thread-Safety","JPA N+1","Cache Stampede","Kafka Consumer Groups","Angular Signals","Outbox Pattern","Spring Security","Load Balancer"]
 };
+/* ===================================================== */
 
-const ICONS = {
+const I = {
   yt:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.75 15.02V8.98L15.5 12z"/></svg>',
-  play:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>',
-  list:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h12M4 12h12M4 18h8M19 15v6l4-3z"/></svg>',
+  play:'<svg viewBox="0 0 24 24" fill="#fff"><path d="M7 4.5v15l12-7.5z"/></svg>',
   ig:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>',
   fb:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8.5c0-.3.2-.5.5-.5z"/></svg>',
-  tg:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.7 19.5c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.3-5 9.2-8.3c.4-.4-.1-.6-.6-.2L6.1 13.2 1.2 11.7c-1-.3-1.1-1 .2-1.5L20.6 2.9c.9-.3 1.6.2 1.3 1.4z"/></svg>'
+  tg:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.7 19.5c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.3-5 9.2-8.3c.4-.4-.1-.6-.6-.2L6.1 13.2 1.2 11.7c-1-.3-1.1-1 .2-1.5L20.6 2.9c.9-.3 1.6.2 1.3 1.4z"/></svg>',
+  list:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h12M4 12h12M4 18h8M19 15v6l4-3z"/></svg>',
+  arrow:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
 };
-
-function render(id, items){
-  const box = document.getElementById(id);
-  items.filter(l => l.url).forEach((l, i) => {
-    const a = document.createElement('a');
-    a.className = 'btn' + (l.featured ? ' featured' : '');
-    a.href = l.url; a.target = '_blank'; a.rel = 'noopener';
-    a.style.setProperty('--c', l.color);
-    a.style.animationDelay = (0.15 + i * 0.08) + 's';
-    a.innerHTML = `<span class="ico">${ICONS[l.icon]}</span>
-      <span class="txt"><b>${l.title}</b><small>${l.sub}</small></span>
-      ${l.badge ? `<span class="badge">${l.badge}</span>` : '<span class="arrow">&rarr;</span>'}`;
-    box.appendChild(a);
+const C = CONFIG;
+const tiles = [
+  `<a class="tile wide yt" href="${C.youtube}">
+     <div class="yt-row"><span class="ico">${I.yt}</span>
+       <div><h3>YouTube</h3><p>@TheTechBites-vk</p></div></div>
+     <div class="sub"><small>Daily interview Shorts at <b>9 AM</b><br>+ System Design long videos</small><span class="btn-sub">SUBSCRIBE</span></div>
+   </a>`,
+  `<a class="tile wide vid" href="${C.latest.url}">
+     <div class="thumb"><span class="pill">LATEST EPISODE</span><img src="https://i.ytimg.com/vi/${C.latest.id}/hqdefault.jpg" alt=""><span class="play">${I.play}</span></div>
+     <div class="body"><h3>${C.latest.title}</h3><p>${C.latest.sub}</p></div>
+   </a>`,
+  `<a class="tile" style="--c:#F5C542" href="${C.igMain}">
+     <span class="go">${I.arrow}</span><span class="ico" style="background:linear-gradient(135deg,#F9CE34,#EE2A7B,#6228D7)">${I.ig}</span>
+     <h3>Instagram</h3><p>@the.tech.bites<br>Java &amp; Spring reels</p></a>`,
+  `<a class="tile" style="--c:#66FCF1" href="${C.igVisual}">
+     <span class="go">${I.arrow}</span><span class="ico" style="background:linear-gradient(135deg,#66FCF1,#8B5CF6)">${I.ig}</span>
+     <h3>Instagram</h3><p>@visualcode.dev<br>Algorithm visuals</p></a>`,
+  `<a class="tile" style="--c:#4D8BFF" href="${C.facebook}">
+     <span class="go">${I.arrow}</span><span class="ico" style="background:linear-gradient(135deg,#4D8BFF,#1A4FD6)">${I.fb}</span>
+     <h3>Facebook</h3><p>The Tech Bites<br>Page</p></a>`,
+  `<a class="tile" style="--c:#4FC3F7" href="${C.telegram}">
+     <span class="go">${I.arrow}</span><span class="ico" style="background:linear-gradient(135deg,#4FC3F7,#1E88E5)">${I.tg}</span>
+     <h3>Telegram</h3><p>New video<br>alerts</p></a>`,
+  `<a class="tile wide" style="--c:#8B5CF6" href="${C.playlists}">
+     <span class="go">${I.arrow}</span><span class="ico" style="background:linear-gradient(135deg,#8B5CF6,#5B2EE6)">${I.list}</span>
+     <h3>All Playlists</h3><p>Binge a full topic, start to end</p>
+     <div class="chips"><span class="chip">System Design</span><span class="chip">Microservices</span><span class="chip">Interview Shorts</span><span class="chip">Java 25</span></div></a>`
+];
+const bento = document.getElementById('bento');
+bento.innerHTML = tiles.join('');
+[...bento.children].forEach((t,i)=>{
+  t.target='_blank'; t.rel='noopener'; t.style.animationDelay=(.25+i*.07)+'s';
+  t.addEventListener('pointermove',e=>{
+    const r=t.getBoundingClientRect(), x=e.clientX-r.left, y=e.clientY-r.top;
+    t.style.setProperty('--mx',x+'px'); t.style.setProperty('--my',y+'px');
+    t.style.transform=`perspective(700px) rotateX(${(y/r.height-.5)*-5}deg) rotateY(${(x/r.width-.5)*5}deg) translateY(-3px)`;
   });
-}
-render('watch', LINKS.watch);
-render('follow', LINKS.follow);
-document.getElementById('yr').textContent = new Date().getFullYear();
+  t.addEventListener('pointerleave',()=>{t.style.transform=''});
+});
+
+/* ticker */
+const tr=document.getElementById('track');
+tr.innerHTML=[...C.ticker,...C.ticker].map(s=>`<span>${s}</span>`).join('');
+
+/* typewriter */
+(function(){
+  const el=document.getElementById('typed'); let w=0,c=0,del=false;
+  (function tick(){
+    const word=C.typing[w];
+    el.textContent=word.slice(0,c);
+    if(!del&&c<word.length){c++;setTimeout(tick,85)}
+    else if(!del){del=true;setTimeout(tick,1300)}
+    else if(c>0){c--;setTimeout(tick,40)}
+    else{del=false;w=(w+1)%C.typing.length;setTimeout(tick,250)}
+  })();
+})();
+document.getElementById('yr').textContent=new Date().getFullYear();
 </script>
 </body>
 </html>
