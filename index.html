@@ -181,13 +181,13 @@ footer b{color:var(--cyan);font-weight:600}
 
 /* ---------- desktop layout ---------- */
 @media (min-width:960px){
-  main{max-width:1180px;display:grid;grid-template-columns:350px minmax(0,1fr);gap:40px;padding:56px 32px 40px;align-items:start}
-  .side{position:sticky;top:40px;padding:34px 24px 28px;border-radius:28px;border:1px solid var(--line);
+  main{max-width:1180px;display:grid;grid-template-columns:360px minmax(0,1fr);gap:40px;padding:56px 32px 40px;align-items:start}
+  .side{position:sticky;top:28px;padding:26px 22px 20px;border-radius:28px;border:1px solid var(--line);
     background:linear-gradient(165deg,rgba(139,92,246,.10),rgba(15,17,24,.75) 45%);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
-  .logo{width:150px;height:150px}
+  .logo{width:124px;height:124px;margin-bottom:14px}
   h1{font-size:34px}
-  .stats{flex-direction:column;align-items:stretch}
-  .stat{justify-content:center}
+  .stats{gap:6px;margin-top:14px}
+  .stat{padding:6px 10px;font-size:11.5px;white-space:nowrap}
   .ticker{margin:0 0 22px;border-radius:14px;border:1px solid var(--line)}
   #bento1{grid-template-columns:1fr 1fr}
   #bento1 .wide{grid-column:span 1}
@@ -204,10 +204,50 @@ footer b{color:var(--cyan);font-weight:600}
   footer{grid-column:1 / -1}
 }
 
+
+/* ---------- premium extras ---------- */
+html{scroll-behavior:smooth}
+.side-x{display:none}
+.cursor{position:fixed;width:520px;height:520px;border-radius:50%;pointer-events:none;z-index:0;left:0;top:0;
+  background:radial-gradient(circle,rgba(102,252,241,.09),rgba(139,92,246,.05) 40%,transparent 70%);transform:translate(-50%,-50%);transition:opacity .4s;opacity:0}
+.sec-h h2{display:flex;align-items:center;gap:10px}
+@media (min-width:960px){
+  .cursor{opacity:1}
+  h1{font-size:38px}
+  .side{overflow:hidden}
+  .side::before{content:"";position:absolute;inset:-1px;border-radius:28px;padding:1px;pointer-events:none;
+    background:conic-gradient(from var(--a,0deg),transparent 0 60%,var(--violet) 72%,var(--cyan) 84%,var(--gold) 92%,transparent);
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:border 6s linear infinite}
+  .side-x{display:block;margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+  .srow{display:flex;justify-content:center;gap:10px}
+  .srow a{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;color:#fff;background:var(--g);transition:transform .25s,box-shadow .25s}
+  .srow a:hover{transform:translateY(-4px) scale(1.08);box-shadow:0 10px 24px -8px var(--sc)}
+  .srow svg{width:20px;height:20px}
+  .cd{margin-top:14px;display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-radius:14px;
+    background:rgba(0,0,0,.3);border:1px solid var(--line);font-size:12px;color:var(--muted)}
+  .cd b{font:600 16px "JetBrains Mono",monospace;color:var(--gold);letter-spacing:1px;text-shadow:0 0 14px rgba(245,197,66,.5)}
+  .qnav{margin-top:10px;display:flex;flex-direction:column;gap:2px}
+  .qnav a{display:flex;align-items:center;gap:10px;padding:7px 12px;border-radius:11px;text-decoration:none;color:var(--muted);font-size:13px;font-weight:500;transition:.25s}
+  .qnav a i{width:6px;height:6px;border-radius:50%;background:var(--line);transition:.25s}
+  .qnav a:hover,.qnav a.on{color:var(--text);background:rgba(255,255,255,.04)}
+  .qnav a.on i{background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
+  #bento1{grid-template-columns:1fr 1.25fr}
+  .sec{margin-top:34px}
+  .sec-h h2::after{content:"";width:60px;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+  .short{transition:transform .4s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .3s}
+  .short:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 22px 40px -18px var(--c2)}
+  .short img{transition:transform .6s,opacity .3s}
+  .short:hover img{transform:scale(1.08);opacity:.75}
+  .qcard{padding:26px}
+  .qtext{font-size:20px}
+}
+
+@media (min-width:960px) and (max-height:780px){.qnav{display:none}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.tile{opacity:1}}
 </style>
 </head>
 <body>
+<div class="cursor" id="cursor"></div>
 <div class="bg"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div><div class="gridfloor"></div><div class="noise"></div></div>
 
 <main>
@@ -220,6 +260,16 @@ footer b{color:var(--cyan);font-weight:600}
       <span class="stat">⏰ New Short <em>9 AM</em> daily</span>
       <span class="stat">🎬 Long videos <em>weekends</em></span>
     </div>
+    <div class="side-x">
+      <div class="srow" id="srow"></div>
+      <div class="cd"><span>Next Short drops in</span><b id="cd">--:--:--</b></div>
+      <nav class="qnav" id="qnav">
+        <a href="#s-q"><i></i>Today's Question</a>
+        <a href="#s-shorts"><i></i>Top Shorts</a>
+        <a href="#s-follow"><i></i>Follow Us</a>
+        <a href="#s-road"><i></i>Learning Roadmap</a>
+      </nav>
+    </div>
   </section></aside>
 
   <div class="content">
@@ -227,7 +277,7 @@ footer b{color:var(--cyan);font-weight:600}
 
   <section class="bento" id="bento1"></section>
 
-  <section class="sec" style="animation-delay:.45s">
+  <section class="sec" id="s-q" style="animation-delay:.45s">
     <div class="sec-h"><h2>Today's Interview Question</h2><small id="qnext"></small></div>
     <div class="qcard" id="qcard">
       <div class="qmeta"><span class="qbadge" id="qno"></span><span class="qtopic" id="qtopic"></span></div>
@@ -238,17 +288,17 @@ footer b{color:var(--cyan);font-weight:600}
     </div>
   </section>
 
-  <section class="sec" style="animation-delay:.55s">
+  <section class="sec" id="s-shorts" style="animation-delay:.55s">
     <div class="sec-h"><h2>🔥 Top Shorts</h2><small class="swipe">swipe →</small></div>
     <div class="shorts" id="shorts"></div>
   </section>
 
-  <section class="sec" style="animation-delay:.6s">
+  <section class="sec" id="s-follow" style="animation-delay:.6s">
     <div class="sec-h"><h2>Follow Us</h2></div>
     <div class="bento" id="bento2"></div>
   </section>
 
-  <section class="sec" style="animation-delay:.65s">
+  <section class="sec" id="s-road" style="animation-delay:.65s">
     <div class="sec-h"><h2>Learning Roadmap</h2><small>zero → full stack</small></div>
     <div class="road" id="road"></div>
   </section>
@@ -320,7 +370,7 @@ const tiles = [
   `<a class="tile wide yt" href="${C.youtube}">
      <div class="yt-row"><span class="ico">${I.yt}</span>
        <div><h3>YouTube</h3><p>@TheTechBites-vk</p></div></div>
-     <div class="sub"><small>Daily interview Shorts at <b>9 AM</b><br>+ System Design long videos</small><span class="btn-sub">SUBSCRIBE</span></div>
+     <div class="sub"><small>New Short daily at <b>9 AM</b><br>+ weekend long videos</small><span class="btn-sub">SUBSCRIBE</span></div>
    </a>`,
   `<a class="tile wide vid" href="${C.latest.url}">
      <div class="thumb"><span class="pill">LATEST EPISODE</span><img src="https://i.ytimg.com/vi/${C.latest.id}/hqdefault.jpg" alt=""><span class="play">${I.play}</span></div>
@@ -389,6 +439,41 @@ shorts.querySelectorAll('h4[data-id]').forEach(h=>{
 /* roadmap */
 road.innerHTML=C.roadmap.map((r,n)=>`<a class="step" data-n="${n+1}" style="--sc:${r.c}" href="${C.playlists}" target="_blank" rel="noopener">
   <span class="lvl">${r.lvl}</span><h4>${r.t}</h4><p>${r.d}</p></a>`).join('');
+
+
+/* side social row */
+srow.innerHTML=[
+ [C.youtube,I.yt,'linear-gradient(135deg,#FF4D4D,#C4161C)','#FF3B3B','YouTube'],
+ [C.igMain,I.ig,'linear-gradient(135deg,#F9CE34,#EE2A7B,#6228D7)','#EE2A7B','Instagram'],
+ [C.igVisual,I.ig,'linear-gradient(135deg,#66FCF1,#8B5CF6)','#66FCF1','visualcode.dev'],
+ [C.facebook,I.fb,'linear-gradient(135deg,#4D8BFF,#1A4FD6)','#4D8BFF','Facebook'],
+ [C.telegram,I.tg,'linear-gradient(135deg,#4FC3F7,#1E88E5)','#4FC3F7','Telegram']
+].map(([u,ic,g,c,t])=>`<a href="${u}" target="_blank" rel="noopener" title="${t}" style="--g:${g};--sc:${c}">${ic}</a>`).join('');
+
+/* countdown to next 9 AM IST */
+(function(){
+  const el=document.getElementById('cd');
+  function tick(){
+    const now=Date.now(), ist=new Date(now+5.5*36e5); // IST wall clock in UTC fields
+    const next=new Date(Date.UTC(ist.getUTCFullYear(),ist.getUTCMonth(),ist.getUTCDate(),9,0,0));
+    if(ist>=next) next.setUTCDate(next.getUTCDate()+1);
+    let d=Math.max(0,Math.floor((next-ist)/1000));
+    const h=String(Math.floor(d/3600)).padStart(2,'0'),m=String(Math.floor(d%3600/60)).padStart(2,'0'),x=String(d%60).padStart(2,'0');
+    el.textContent=`${h}:${m}:${x}`;
+  }
+  tick(); setInterval(tick,1000);
+})();
+
+/* active section in side nav */
+const navLinks=[...document.querySelectorAll('#qnav a')];
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){navLinks.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))}
+}),{rootMargin:'-40% 0px -55% 0px'});
+['s-q','s-shorts','s-follow','s-road'].forEach(id=>io.observe(document.getElementById(id)));
+
+/* cursor glow */
+const cur=document.getElementById('cursor');
+addEventListener('pointermove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px'});
 
 /* ticker */
 const tr=document.getElementById('track');
