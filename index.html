@@ -178,6 +178,32 @@ h1 span{background:linear-gradient(100deg,var(--cyan),var(--violet) 60%,var(--go
 
 footer{text-align:center;color:var(--muted);font-size:12px;margin-top:28px;line-height:1.7}
 footer b{color:var(--cyan);font-weight:600}
+
+/* ---------- desktop layout ---------- */
+@media (min-width:960px){
+  main{max-width:1180px;display:grid;grid-template-columns:350px minmax(0,1fr);gap:40px;padding:56px 32px 40px;align-items:start}
+  .side{position:sticky;top:40px;padding:34px 24px 28px;border-radius:28px;border:1px solid var(--line);
+    background:linear-gradient(165deg,rgba(139,92,246,.10),rgba(15,17,24,.75) 45%);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+  .logo{width:150px;height:150px}
+  h1{font-size:34px}
+  .stats{flex-direction:column;align-items:stretch}
+  .stat{justify-content:center}
+  .ticker{margin:0 0 22px;border-radius:14px;border:1px solid var(--line)}
+  #bento1{grid-template-columns:1fr 1fr}
+  #bento1 .wide{grid-column:span 1}
+  #bento1 .yt{display:flex;flex-direction:column;justify-content:space-between}
+  .thumb{aspect-ratio:16/7.2}
+  #bento2{grid-template-columns:repeat(4,1fr)}
+  #bento2 .wide{grid-column:span 4}
+  .shorts{display:grid;grid-template-columns:repeat(4,1fr);overflow:visible;margin:0;padding:4px 0}
+  .short{flex:none}
+  .sec-h small.swipe{display:none}
+  .road{display:grid;grid-template-columns:1fr 1fr;column-gap:14px;padding-left:0}
+  .road::before{display:none}
+  .step{margin:0 0 12px 30px}
+  footer{grid-column:1 / -1}
+}
+
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.tile{opacity:1}}
 </style>
 </head>
@@ -185,7 +211,7 @@ footer b{color:var(--cyan);font-weight:600}
 <div class="bg"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div><div class="gridfloor"></div><div class="noise"></div></div>
 
 <main>
-  <section class="hero">
+  <aside class="side"><section class="hero">
     <div class="logo"><img src="logo.png" alt="The Tech Bites logo"><span class="live"><i></i>DAILY</span></div>
     <h1>The <span>Tech Bites</span></h1>
     <div class="type"><b id="typed"></b></div>
@@ -194,8 +220,9 @@ footer b{color:var(--cyan);font-weight:600}
       <span class="stat">⏰ New Short <em>9 AM</em> daily</span>
       <span class="stat">🎬 Long videos <em>weekends</em></span>
     </div>
-  </section>
+  </section></aside>
 
+  <div class="content">
   <div class="ticker"><div class="track" id="track"></div></div>
 
   <section class="bento" id="bento1"></section>
@@ -212,7 +239,7 @@ footer b{color:var(--cyan);font-weight:600}
   </section>
 
   <section class="sec" style="animation-delay:.55s">
-    <div class="sec-h"><h2>🔥 Top Shorts</h2><small>swipe →</small></div>
+    <div class="sec-h"><h2>🔥 Top Shorts</h2><small class="swipe">swipe →</small></div>
     <div class="shorts" id="shorts"></div>
   </section>
 
@@ -226,6 +253,8 @@ footer b{color:var(--cyan);font-weight:600}
     <div class="road" id="road"></div>
   </section>
 
+  </div>
+
   <footer>Built with <b>HTML</b> + <b>Java</b> energy<br>&copy; <span id="yr"></span> The Tech Bites</footer>
 </main>
 
@@ -233,7 +262,7 @@ footer b{color:var(--cyan);font-weight:600}
 /* ===================== EDIT HERE ===================== */
 const CONFIG = {
   youtube:   "https://www.youtube.com/@TheTechBites-vk?sub_confirmation=1",
-  latest:    { url:"https://youtu.be/rB1-hQ6_9AQ", id:"rB1-hQ6_9AQ", title:"Microservices: Service Discovery", sub:"Theory + practical, full episode" },
+  latest:    { url:"https://youtu.be/nyiWK4JvIsM", id:"nyiWK4JvIsM", title:"Latest full episode", sub:"Theory + practical, full episode" },
   playlists: "https://www.youtube.com/@TheTechBites-vk/playlists",
   igMain:    "https://www.instagram.com/the.tech.bites/",
   igVisual:  "https://www.instagram.com/visualcode.dev/",
@@ -295,7 +324,7 @@ const tiles = [
    </a>`,
   `<a class="tile wide vid" href="${C.latest.url}">
      <div class="thumb"><span class="pill">LATEST EPISODE</span><img src="https://i.ytimg.com/vi/${C.latest.id}/hqdefault.jpg" alt=""><span class="play">${I.play}</span></div>
-     <div class="body"><h3>${C.latest.title}</h3><p>${C.latest.sub}</p></div>
+     <div class="body"><h3 id="ltitle">${C.latest.title}</h3><p>${C.latest.sub}</p></div>
    </a>`,
   `<a class="tile" style="--c:#F5C542" href="${C.igMain}">
      <span class="go">${I.arrow}</span><span class="ico" style="background:linear-gradient(135deg,#F9CE34,#EE2A7B,#6228D7)">${I.ig}</span>
@@ -326,6 +355,9 @@ b1.innerHTML = tiles.slice(0,2).join(''); b2.innerHTML = tiles.slice(2).join('')
   t.addEventListener('pointerleave',()=>{t.style.transform=''});
 });
 
+
+/* latest video real title */
+fetch('https://noembed.com/embed?url=https://www.youtube.com/watch?v='+C.latest.id).then(r=>r.json()).then(d=>{if(d.title)ltitle.textContent=d.title.split('|')[0].trim()}).catch(()=>{});
 
 /* daily question */
 (function(){
